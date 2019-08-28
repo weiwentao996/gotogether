@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+
+	<package name="user" extends="struts-default">
+		<interceptors>
+			<interceptor name="privilegeInterceptor" class="net.yothin.goTogether.action.interceptor.PrivilegeInterceptor" />
+		</interceptors>
+		
+		<default-action-ref name="index"></default-action-ref>
+		<action name="userAction" class="net.yothin.goTogether.action.UserAction">
+			<result name="index">/index.jsp</result>
+			<result name="login">/userLogin.jsp</result>
+			<result name="registerSeccess">/index.jsp</result>
+			<result name="register">/userRegister.jsp</result>
+			<result name="person">/personHome.jsp</result>
+			<result name="updateSeccess">/passwordSeccess.jsp</result>
+			<result name="password">/personPassword.jsp</result>
+			<result name="admin">/admin.jsp</result>
+			<result name="adminLoginFail">/adminLogin.jsp</result>
+			<result name="adminUser">/adminUser.jsp</result>
+			<result name="adminUser2">/adminUser2.jsp</result>
+			
+			<interceptor-ref name="privilegeInterceptor">
+				<param name="excludeMethods">register,login</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"/>
+			
+		</action>
+	</package>
+	
+	<package name="ajax" extends="json-default">
+        <action name="ajaxRequest"
+            class="net.yothin.goTogether.action.UserAjaxAction">
+            <result name="check" type="json"></result>
+        </action>
+    </package>
+    
+    <package name="program" extends="struts-default">
+		<default-action-ref name="index"></default-action-ref>
+		<action name="programAction" class="net.yothin.goTogether.action.ProgramAction">
+			<result name="editSeccess">/editProgram.jsp</result>
+			<result name="loginFail">/userLogin.jsp</result>
+			<result name="updateSeccess">/passwordSeccess.jsp</result>
+			<result name="queryAddPer">/queryAddressPer.jsp</result>
+			<result name="showProgram">/showProgram.jsp</result>
+			<result name="index">/index.jsp</result>
+			<result name="admin">/admin.jsp</result>
+			<result name="adminProgram">/adminProgram.jsp</result>
+			<result name="showProgramAdmin">/showProgramAdmin.jsp</result>
+			<result name="query">/query.jsp</result>
+			<result name="guangli">/guangliProgram.jsp</result>
+		</action>
+	</package>
+	
+	<package name="experience" extends="struts-default">
+		<default-action-ref name="index"></default-action-ref>
+		<action name="experienceAction" class="net.yothin.goTogether.action.ExperienceAction">
+			<result name="index">/index.jsp</result>
+			<result name="editSeccess">/editExperience.jsp</result>
+			<result name="loginFail">/userLogin.jsp</result>
+			<result name="showExperience">/showExperience.jsp</result>
+			<result name="showAdminExperience">/showAdminExperience.jsp</result>
+			<result name="adminExperience">/adminExperience.jsp</result>
+			<result name="guangli">/guangliExperience.jsp</result>
+			<result name="updateSeccess">/passwordSeccess.jsp</result>
+			<result name="queryExperience">/queryExperience.jsp</result>
+			<result name="queryExT">/queryExperienceByTitle.jsp</result>
+		</action>
+	</package>
+	
+	<package name="go" extends="struts-default">
+        <action name="index"
+            class="net.yothin.goTogether.action.IndexAction">
+            <result name="success">/index.jsp</result>
+        </action>
+    </package>
+</struts>
+	
